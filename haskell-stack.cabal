@@ -41,12 +41,22 @@ library
     , text
   default-language: Haskell2010
 
-executable haskell-stack-exe
+executable Hello-exec
+  main-is: Hello.hs
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , haskell-stack
+    , req
+    , text
+  default-language: Haskell2010
+
+executable Main-exec
   main-is: Main.hs
-  other-modules:
-      Paths_haskell_stack
-  autogen-modules:
-      Paths_haskell_stack
   hs-source-dirs:
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N

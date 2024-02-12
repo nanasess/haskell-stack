@@ -37,19 +37,37 @@ ghc-options:
 - -Wpartial-fields
 - -Wredundant-constraints
 
+# 複数の実行ファイルを用意する
+# see https://zenn.dev/toyboot4e/scraps/a84934cda8b49b#comment-322967a3875a19
+_exe-defs: &exec-default
+  source-dirs: app
+  ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+  other-modules: []
+  dependencies:
+    - haskell-stack
+
 library:
   source-dirs: src
 
 executables:
-  haskell-stack-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - haskell-stack
+  # haskell-stack-exe:
+  #   main:                Main.hs
+  #   source-dirs:         app
+  #   ghc-options:
+  #   - -threaded
+  #   - -rtsopts
+  #   - -with-rtsopts=-N
+  #   dependencies:
+  #   - haskell-stack
+  Main-exec:
+    <<: *exec-default
+    main: Main.hs
+  Hello-exec:
+    <<: *exec-default
+    main: Hello.hs
 
 tests:
   haskell-stack-test:
